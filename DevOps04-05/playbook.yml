@@ -1,0 +1,12 @@
+---
+- name: Configure PostgreSQL servers
+  hosts: postgres
+  become: yes
+  vars:
+    postgres_version: 14
+    replication_user: replicator
+    replication_password: "{{ elizabethThEbest! }}"
+    
+  roles:
+    - common
+    - "{{ postgres_role }}"

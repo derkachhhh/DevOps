@@ -1,0 +1,16 @@
+# monitoring/traefik_dynamic.yaml
+http:
+  routers:
+    web-router:
+      rule: "Host(`localhost`)"
+      entryPoints:
+        - websecure
+      service: web-service
+      tls:
+        certResolver: myresolver
+
+  services:
+    web-service:
+      loadBalancer:
+        servers:
+          - url: "http://web:8000"

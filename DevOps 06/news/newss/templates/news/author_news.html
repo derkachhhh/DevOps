@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новини від {{ author.first_name }} {{ author.last_name }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css_styles/author_news_style.css' %}">
+</head>
+<body>
+    {% include 'news/header.html' %}
+    <div class="container">
+        <h1>Новини від {{ author.first_name }} {{ author.last_name }}</h1>
+        <ul class="news-list">
+            {% for news in author_news %}
+                <li class="news-item">
+                    <h2 class="news-title">
+                        <a href="{% url 'news_detail' news.id %}">{{ news.title }}</a>
+                    </h2>
+                    <p class="news-meta">Дата публікації: {{ news.pub_date }}</p>
+                    <p>{{ news.full_text|truncatewords:20 }}</p>
+                </li>
+            {% empty %}
+                <li>У цього автора ще немає новин.</li>
+            {% endfor %}
+        </ul>
+        <div class="back-link-container">
+            <a class="back-link" href="{% url 'authors' %}">Повернутися до списку авторів</a>
+        </div>
+    </div>
+</body>
+</html>

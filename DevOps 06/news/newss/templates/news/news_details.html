@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ news.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css_styles/news_details_style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ news.title }}</h1>
+        <p>Автор: {{ news.author }}</p>
+        <p>Дата публікації: {{ news.pub_date }}</p>
+        <p>{{ news.full_text }}</p>
+        <a class="back-to-news" href="{% url 'news_list' %}">На всі новини</a>
+    </div>
+</body>
+</html>
